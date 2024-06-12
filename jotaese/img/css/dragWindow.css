@@ -1,0 +1,32 @@
+.teclado-flotante{
+	width:375px;
+	border:1px solid black;
+	margin:2px;
+	position: absolute;
+	left: 696px; 
+	top: 246px;
+	background-color: #EAEAEA;
+	z-index: 50;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none; 
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.teclado-flotante__drag-part{
+	display: block;
+	background-color: #EAEAEA;
+	height: 15px;
+	cursor:move;
+}
+
+.teclado-flotante__keyboard-part{
+	display: block;
+	padding: 10px 30px;
+}
+
+.draggable {
+	opacity: 1;
+}
